@@ -105,6 +105,8 @@ class ViewController: UIViewController {
         
         topTextField.defaultTextAttributes = memeTextAttributes
         bottomTextField.defaultTextAttributes = memeTextAttributes
+        topTextField.textAlignment = .center
+        bottomTextField.textAlignment = .center
     }
     
     func save() {
