@@ -57,6 +57,7 @@ class ViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+        // Disable share button if no image is selected
         if selectedImage.image == nil {
             shareButton.isEnabled = false
         }
@@ -66,7 +67,6 @@ class ViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-
         super.viewWillDisappear(animated)
         unsubscribeFromKeyboardNotifications()
     }
@@ -77,7 +77,6 @@ class ViewController: UIViewController {
     }
 
     func unsubscribeFromKeyboardNotifications() {
-
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidHideNotification, object: nil)
     }
@@ -91,7 +90,6 @@ class ViewController: UIViewController {
     }
 
     func getKeyboardHeight(_ notification:Notification) -> CGFloat {
-
         let userInfo = notification.userInfo
         let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue // of CGRect
         return keyboardSize.cgRectValue.height
@@ -101,7 +99,7 @@ class ViewController: UIViewController {
         let memeTextAttributes: [NSAttributedString.Key: Any] = [
             NSAttributedString.Key.strokeColor: UIColor.black,
             NSAttributedString.Key.foregroundColor: UIColor.white,
-            NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+            NSAttributedString.Key.font: UIFont(name: Constants.fontName, size: 40)!,
             NSAttributedString.Key.strokeWidth: 5
         ]
         
@@ -133,7 +131,7 @@ class ViewController: UIViewController {
 extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         // Access the image from info
-        guard let image = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerOriginalImage")] as? UIImage else { return }
+        guard let image = info[UIImagePickerController.InfoKey(rawValue: Constants.imageKey)] as? UIImage else { return }
         selectedImage.contentMode = .scaleAspectFit
         selectedImage.image = image
         shareButton.isEnabled = true

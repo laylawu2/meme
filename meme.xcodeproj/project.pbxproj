@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		EE824C60256DE97400937594 /* Meme.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE824C5F256DE97400937594 /* Meme.swift */; };
+		EE824C62256DF88000937594 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE824C61256DF88000937594 /* Constants.swift */; };
 		EEAB64772551E8E200CD774E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAB64762551E8E200CD774E /* AppDelegate.swift */; };
 		EEAB64792551E8E200CD774E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAB64782551E8E200CD774E /* SceneDelegate.swift */; };
 		EEAB647B2551E8E200CD774E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAB647A2551E8E200CD774E /* ViewController.swift */; };
@@ -37,6 +38,7 @@
 
 /* Begin PBXFileReference section */
 		EE824C5F256DE97400937594 /* Meme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meme.swift; sourceTree = "<group>"; };
+		EE824C61256DF88000937594 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		EEAB64732551E8E200CD774E /* meme.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = meme.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEAB64762551E8E200CD774E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EEAB64782551E8E200CD774E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				EEAB64782551E8E200CD774E /* SceneDelegate.swift */,
 				EE824C5F256DE97400937594 /* Meme.swift */,
 				EEAB647A2551E8E200CD774E /* ViewController.swift */,
+				EE824C61256DF88000937594 /* Constants.swift */,
 				EEAB647C2551E8E200CD774E /* Main.storyboard */,
 				EEAB647F2551E8E400CD774E /* Assets.xcassets */,
 				EEAB64812551E8E400CD774E /* LaunchScreen.storyboard */,
@@ -262,6 +265,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE824C62256DF88000937594 /* Constants.swift in Sources */,
 				EEAB647B2551E8E200CD774E /* ViewController.swift in Sources */,
 				EE824C60256DE97400937594 /* Meme.swift in Sources */,
 				EEAB64772551E8E200CD774E /* AppDelegate.swift in Sources */,
