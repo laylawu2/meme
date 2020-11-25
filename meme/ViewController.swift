@@ -9,8 +9,6 @@
 import UIKit
 
 class ViewController: UIViewController {
-    var imagePicker = UIImagePickerController()
-    
     @IBOutlet weak var selectedImage: UIImageView!
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
@@ -29,13 +27,19 @@ class ViewController: UIViewController {
     }
     
     @IBAction func pickAnImageFromCamera(_ sender: Any) {
-        imagePicker.sourceType = .camera
-        present(imagePicker, animated: true, completion: nil)
+        chooseImageFromCameraOrPhoto(source: .camera)
     }
     
     @IBAction func pickAnImage(_ sender: Any) {
-        imagePicker.sourceType = .photoLibrary
-        present(imagePicker, animated: true, completion: nil)
+        chooseImageFromCameraOrPhoto(source: .photoLibrary)
+    }
+    
+    func chooseImageFromCameraOrPhoto(source: UIImagePickerController.SourceType) {
+        let pickerController = UIImagePickerController()
+        pickerController.delegate = self
+        pickerController.allowsEditing = true
+        pickerController.sourceType = source
+        present(pickerController, animated: true, completion: nil)
     }
     
     @IBAction func shareImage(_ sender: Any) {
@@ -58,7 +62,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        imagePicker.delegate = self
+        
         topTextField.delegate = self
         bottomTextField.delegate = self
         
@@ -92,7 +96,9 @@ class ViewController: UIViewController {
     }
     
     @objc func keyboardWillShow(_ notification:Notification) {
-        view.frame.origin.y -= getKeyboardHeight(notification)
+        if bottomTextField.isFirstResponder {
+            view.frame.origin.y -= getKeyboardHeight(notification)
+        }
     }
 
     @objc func keyboardWillHide(_ notification:Notification) {
