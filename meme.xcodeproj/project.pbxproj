@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EE824C60256DE97400937594 /* Meme.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE824C5F256DE97400937594 /* Meme.swift */; };
 		EEAB64772551E8E200CD774E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAB64762551E8E200CD774E /* AppDelegate.swift */; };
 		EEAB64792551E8E200CD774E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAB64782551E8E200CD774E /* SceneDelegate.swift */; };
 		EEAB647B2551E8E200CD774E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAB647A2551E8E200CD774E /* ViewController.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EE824C5F256DE97400937594 /* Meme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meme.swift; sourceTree = "<group>"; };
 		EEAB64732551E8E200CD774E /* meme.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = meme.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEAB64762551E8E200CD774E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EEAB64782551E8E200CD774E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 			children = (
 				EEAB64762551E8E200CD774E /* AppDelegate.swift */,
 				EEAB64782551E8E200CD774E /* SceneDelegate.swift */,
+				EE824C5F256DE97400937594 /* Meme.swift */,
 				EEAB647A2551E8E200CD774E /* ViewController.swift */,
 				EEAB647C2551E8E200CD774E /* Main.storyboard */,
 				EEAB647F2551E8E400CD774E /* Assets.xcassets */,
@@ -260,6 +263,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EEAB647B2551E8E200CD774E /* ViewController.swift in Sources */,
+				EE824C60256DE97400937594 /* Meme.swift in Sources */,
 				EEAB64772551E8E200CD774E /* AppDelegate.swift in Sources */,
 				EEAB64792551E8E200CD774E /* SceneDelegate.swift in Sources */,
 			);
@@ -435,6 +439,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7AYR964H86;
 				INFOPLIST_FILE = meme/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -452,6 +457,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7AYR964H86;
 				INFOPLIST_FILE = meme/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
