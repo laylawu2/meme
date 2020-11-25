@@ -11,4 +11,6 @@ import Foundation
 struct Constants {
     static let imageKey = "UIImagePickerControllerOriginalImage"
     static let fontName = "HelveticaNeue-CondensedBlack"
+    static let defaultTopText = "TOP"
+    static let defaultBottomText = "BOTTOM"
 }

@@ -16,7 +16,17 @@ class ViewController: UIViewController {
     @IBOutlet weak var bottomTextField: UITextField!
     @IBOutlet weak var cameraButton: UIButton!
     @IBOutlet weak var toolbar: UIToolbar!
-    @IBOutlet weak var shareButton: UIButton!
+    @IBOutlet weak var shareButton: UIBarButtonItem!
+    @IBOutlet weak var navbar: UINavigationBar!
+    
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
+    
+    @IBAction func cancelButtonTapped(_ sender: Any) {
+        topTextField.text = Constants.defaultTopText
+        bottomTextField.text = Constants.defaultBottomText
+        selectedImage.image = nil
+        shareButton.isEnabled = false
+    }
     
     @IBAction func pickAnImageFromCamera(_ sender: Any) {
         imagePicker.sourceType = .camera
@@ -115,13 +125,15 @@ class ViewController: UIViewController {
     }
     
     func generateMemedImage() -> UIImage {
-        // Hide toolbar
+        // Hide toolbar and navbar
         toolbar.isHidden = true
+        navbar.isHidden = true
         // Render view to an image
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
         // Show toolbar after drawing
         toolbar.isHidden = false
+        navbar.isHidden = false
         
         let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
