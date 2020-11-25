@@ -73,7 +73,7 @@ class ViewController: UIViewController {
     
     func subscribeToKeyboardNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidHide(_:)), name: UIResponder.keyboardDidHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
     func unsubscribeFromKeyboardNotifications() {
@@ -85,7 +85,7 @@ class ViewController: UIViewController {
         view.frame.origin.y -= getKeyboardHeight(notification)
     }
 
-    @objc func keyboardDidHide(_ notification:Notification) {
+    @objc func keyboardWillHide(_ notification:Notification) {
         view.frame.origin.y = 0
     }
 
