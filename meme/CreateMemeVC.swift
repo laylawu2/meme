@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class CreateMemeVC: UIViewController {
     @IBOutlet weak var selectedImage: UIImageView!
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
@@ -63,14 +63,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        topTextField.delegate = self
-        bottomTextField.delegate = self
-        
-        setUpTextFields()
+        setUpTextFieldStyle(forTextField: topTextField, defaultText: Constants.defaultTopText)
+        setUpTextFieldStyle(forTextField: bottomTextField, defaultText: Constants.defaultBottomText)
+
+        cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         // Disable share button if no image is selected
         if selectedImage.image == nil {
             shareButton.isEnabled = false
@@ -92,7 +91,7 @@ class ViewController: UIViewController {
 
     func unsubscribeFromKeyboardNotifications() {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     @objc func keyboardWillShow(_ notification:Notification) {
@@ -125,6 +124,20 @@ class ViewController: UIViewController {
         bottomTextField.textAlignment = .center
     }
     
+    func setupTextFieldStyle(forTextField textField: UITextField, defaultText: String = "") {
+        let memeTextAttributes: [NSAttributedString.Key: Any] = [
+           .strokeColor: UIColor.black,
+           .foregroundColor: UIColor.white,
+           .font: UIFont(name: Constants.fontName, size: 40)!,
+           .strokeWidth: -5
+        ]
+       
+        textField.delegate = self
+        textField.defaultTextAttributes = memeTextAttributes
+        textField.defaultText = defaultText
+        textField.textAlignment = .center
+    }
+    
     func save() {
         let memedImage = generateMemedImage()
         _ = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: selectedImage.image!, memedImage: memedImage)
@@ -132,23 +145,26 @@ class ViewController: UIViewController {
     
     func generateMemedImage() -> UIImage {
         // Hide toolbar and navbar
-        toolbar.isHidden = true
-        navbar.isHidden = true
+        hideToolbars(true)
         // Render view to an image
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
         // Show toolbar after drawing
-        toolbar.isHidden = false
-        navbar.isHidden = false
+        hideToolbars(false)
         
         let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
 
         return memedImage
     }
+    
+    func hideToolbars(_ hide: Bool) {
+        toolbar.isHidden = hide
+        navbar.isHidden = hide
+    }
 }
 
-extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension CreateMemeVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         // Access the image from info
         guard let image = info[UIImagePickerController.InfoKey(rawValue: Constants.imageKey)] as? UIImage else { return }
@@ -163,7 +179,7 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
     }
 }
 
-extension ViewController: UITextFieldDelegate {
+extension CreateMemeVC: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.text = ""
     }
