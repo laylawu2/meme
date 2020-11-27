@@ -15,7 +15,7 @@ class CreateMemeVC: UIViewController {
     @IBOutlet weak var cameraButton: UIButton!
     @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet weak var shareButton: UIBarButtonItem!
-    @IBOutlet weak var navbar: UINavigationBar!
+    @IBOutlet weak var navbar: UIToolbar!
     
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     
@@ -30,7 +30,7 @@ class CreateMemeVC: UIViewController {
         chooseImageFromCameraOrPhoto(source: .camera)
     }
     
-    @IBAction func pickAnImage(_ sender: Any) {
+    @IBAction func pickAnImageFromAlbum(_ sender: Any) {
         chooseImageFromCameraOrPhoto(source: .photoLibrary)
     }
     
@@ -63,8 +63,8 @@ class CreateMemeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUpTextFieldStyle(forTextField: topTextField, defaultText: Constants.defaultTopText)
-        setUpTextFieldStyle(forTextField: bottomTextField, defaultText: Constants.defaultBottomText)
+        setupTextFieldStyle(forTextField: topTextField, defaultText: Constants.defaultTopText)
+        setupTextFieldStyle(forTextField: bottomTextField, defaultText: Constants.defaultBottomText)
 
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
     }
@@ -134,7 +134,7 @@ class CreateMemeVC: UIViewController {
        
         textField.delegate = self
         textField.defaultTextAttributes = memeTextAttributes
-        textField.defaultText = defaultText
+        textField.text = defaultText
         textField.textAlignment = .center
     }
     
