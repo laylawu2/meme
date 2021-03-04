@@ -13,4 +13,5 @@ struct Constants {
     static let fontName = "HelveticaNeue-CondensedBlack"
     static let defaultTopText = "TOP"
     static let defaultBottomText = "BOTTOM"
+    static let sentMemeNavbarTitle = "Sent Meme"
 }

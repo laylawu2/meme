@@ -44,6 +44,9 @@ class CreateMemeVC: UIViewController {
     
     @IBAction func shareImage(_ sender: Any) {
         let memedImage = generateMemedImage()
+        // Save the image to memory
+        save()
+        
         let activityViewController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
 
         present(activityViewController, animated: true)
@@ -52,7 +55,7 @@ class CreateMemeVC: UIViewController {
         activityViewController.completionWithItemsHandler = { (activityType: UIActivity.ActivityType?, completed: Bool, arrayReturnedItems: [Any]?, error: Error?) in
             if completed {
                 print("share completed")
-                self.save()
+                self.dismiss(animated: true, completion: nil)
                 return
             } else {
                 print("cancel")
@@ -67,6 +70,9 @@ class CreateMemeVC: UIViewController {
         setupTextFieldStyle(forTextField: bottomTextField, defaultText: Constants.defaultBottomText)
 
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+//        navigationController?.isToolbarHidden = true
+//        navigationController?.isNavigationBarHidden = true
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -110,20 +116,6 @@ class CreateMemeVC: UIViewController {
         return keyboardSize.cgRectValue.height
     }
     
-    func setUpTextFields() {
-        let memeTextAttributes: [NSAttributedString.Key: Any] = [
-            .strokeColor: UIColor.black,
-            .foregroundColor: UIColor.white,
-            .font: UIFont(name: Constants.fontName, size: 40)!,
-            .strokeWidth: -5
-        ]
-        
-        topTextField.defaultTextAttributes = memeTextAttributes
-        bottomTextField.defaultTextAttributes = memeTextAttributes
-        topTextField.textAlignment = .center
-        bottomTextField.textAlignment = .center
-    }
-    
     func setupTextFieldStyle(forTextField textField: UITextField, defaultText: String = "") {
         let memeTextAttributes: [NSAttributedString.Key: Any] = [
            .strokeColor: UIColor.black,
@@ -140,7 +132,11 @@ class CreateMemeVC: UIViewController {
     
     func save() {
         let memedImage = generateMemedImage()
-        _ = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: selectedImage.image!, memedImage: memedImage)
+        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: selectedImage.image!, memedImage: memedImage)
+        
+        // Save meme image to memory
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.memes.append(meme)
     }
     
     func generateMemedImage() -> UIImage {
@@ -154,7 +150,7 @@ class CreateMemeVC: UIViewController {
         
         let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
-
+        
         return memedImage
     }
     
